@@ -1,0 +1,6 @@
+openai~=1.60.2
+ansible-core~=2.17.0
+gunicorn==21.2.0
+django
+requests
+python-decouple

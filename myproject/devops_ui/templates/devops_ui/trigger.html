@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevOps Pipeline Trigger</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://wallpaperbat.com/img/873650-devops-fundamentals-for-an-absolute.jpg')
+        no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+    }
+
+    .card {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      width: 100%;
+      max-width: 360px;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 1.5em;
+      text-align: center;
+      color: #ffce00;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      color: #e0e0e0;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+
+    input[type="text"]::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(45deg, #0078d7, #00c6ff);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+      margin-top: 10px;
+    }
+
+    button[type="submit"]:hover {
+      background: linear-gradient(45deg, #005fa3, #00a1cc);
+    }
+
+    .result, .error {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+
+    .result {
+      background: rgba(0,128,0,0.3);
+    }
+
+    .error {
+      background: rgba(255,0,0,0.3);
+    }
+
+    .result pre {
+      background: rgba(0,0,0,0.4);
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Trigger DevOps Pipeline in Pratik's Organization</h1>
+    <form method="post">
+      {% csrf_token %}
+      <label>
+        Pipeline ID:
+        <input type="text" name="pipelineId" placeholder="e.g. ABC123" value="{{ pipelineId }}">
+      </label>
+
+      <label>
+        Project:
+        <input type="text" name="project" placeholder="Your project name" value="{{ project }}">
+      </label>
+
+      <button type="submit">🚀 Trigger Pipeline</button>
+    </form>
+
+    {% if result %}
+      <div class="result">
+        <h2>Result</h2>
+        <p><strong>Status:</strong> {{ result.status }}</p>
+        <pre>{{ result.body|safe|json_script:"payload" }}</pre>
+      </div>
+    {% elif error %}
+      <div class="error">
+        <p>{{ error }}</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
