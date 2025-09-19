@@ -30,5 +30,5 @@ jobs:
       run: |
         IMAGE=$ACR_NAME.azurecr.io/$IMAGE_NAME:$TAG
         echo "Building and pushing image: $IMAGE"
-        docker build -t $IMAGE .
+        docker build -t $IMAGE -f ./myproject/Dockerfile ./myproject
         docker push $IMAGE
