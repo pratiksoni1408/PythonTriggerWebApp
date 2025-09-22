@@ -1,0 +1,15 @@
+apiVersion : argoproj.io/v1alpha1 
+kind: Deployment
+metadata:
+  name: pratikaitriggerproject 
+  namespace: argocd
+spec:
+  project: default
+  source: 
+    path: manifests
+    repoURL: https://github.com/pratiksoni1408/PythonTriggerWebApp.git
+    targetRevision: HEAD
+  destination:
+  namespace: webapp
+  server: https://kubernetes.default.svc
+  
