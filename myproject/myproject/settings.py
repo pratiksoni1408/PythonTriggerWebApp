@@ -16,7 +16,7 @@ from decouple import config
 DEBUG = config('DEBUG', default=False, cast=bool)
 SECRET_KEY = config('SECRET_KEY', default='unsafe-default-change-me')
 
-# Azure DevOps settings
+## Azure DevOps settings
 AZDO_ORG_URL = config('AZDO_ORG_URL')  # e.g., https://dev.azure.com/PratiksORG
 AZDO_PAT = config('AZDO_PAT')          # PAT from .env / environment
 AZDO_DEFAULT_PROJECT = config('AZDO_DEFAULT_PROJECT', default='')
