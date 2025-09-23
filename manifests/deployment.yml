@@ -1,7 +1,10 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pratikaitriggerproject 
+  name: pratikaitriggerproject
+  namespace: webapp
+  labels:
+    app: pratikaitriggerproject
 spec:
   replicas: 1
   selector:
@@ -10,10 +13,10 @@ spec:
   template:
     metadata:
       labels:
-        app: pratikaitriggerproject 
+        app: pratikaitriggerproject
     spec:
       containers:
-        - name: pratikaitriggerproject 
-          image: pratikacr.azurecr.io/pratikaitriggerproject
-          ports:
-          - containerPort: 8000
+      - name: pratikaitriggerproject
+        image: pratikacr.azurecr.io/pratikaitriggerproject:PLACEHOLDER
+        ports:
+        - containerPort: 8000
