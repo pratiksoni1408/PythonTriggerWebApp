@@ -4,12 +4,9 @@ metadata:
   name: pratikaitriggerproject
   namespace: argocd
   annotations:
-    # Image Updater watches this image in ACR
-    argocd-image-updater.argoproj.io/image-list: pratikacr.azurecr.io/pratikaitriggerproject
-    # Strategy: always pick the newest pushed tag
-    argocd-image-updater.argoproj.io/pratikacr.azurecr.io/pratikaitriggerproject.update-strategy: newest-build
-    # Use the secret you created in argocd namespace
-    argocd-image-updater.argoproj.io/pratikacr.azurecr.io/pratikaitriggerproject.pull-secret: pullsecret:argocd/acr-creds
+    argocd-image-updater.argoproj.io/image-list: myapp=pratikacr.azurecr.io/pratikaitriggerproject
+    argocd-image-updater.argoproj.io/myapp.update-strategy: newest-build
+    argocd-image-updater.argoproj.io/myapp.pull-secret: pullsecret:argocd/acr-creds
 spec:
   project: default
   source:
