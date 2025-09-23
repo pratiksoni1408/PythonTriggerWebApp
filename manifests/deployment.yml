@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: pratikaitriggerproject
   namespace: webapp
+  labels:
+    app: pratikaitriggerproject
 spec:
   replicas: 1
   selector:
@@ -18,6 +20,7 @@ spec:
         image: pratikacr.azurecr.io/pratikaitriggerproject:PLACEHOLDER
         ports:
         - containerPort: 8000
+        # Inject all environment variables from the app-config secret
         envFrom:
         - secretRef:
-            name: azdo-config
+            name: app-config
