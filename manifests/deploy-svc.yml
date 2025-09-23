@@ -4,8 +4,11 @@ metadata:
   name: pratikaitriggerproject
   namespace: argocd
   annotations:
+    # Define alias "myapp" for your ACR image
     argocd-image-updater.argoproj.io/image-list: myapp=pratikacr.azurecr.io/pratikaitriggerproject
+    # Strategy: always pick the newest pushed tag
     argocd-image-updater.argoproj.io/myapp.update-strategy: newest-build
+    # Use the ACR secret you created in argocd namespace
     argocd-image-updater.argoproj.io/myapp.pull-secret: pullsecret:argocd/acr-creds
 spec:
   project: default
